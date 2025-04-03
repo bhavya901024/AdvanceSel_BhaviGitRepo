@@ -36,7 +36,7 @@ import genericBaseClassUtility_ConfigAttributes.BaseClass;
 public class CreateCampaignTest extends BaseClass{
 	
 	@Test
-	public void  createCampaignTest() throws InterruptedException, IOException {
+	public void  createBhaviCampaignTest() throws InterruptedException, IOException {
 		//Using TestNG created a methods and removed the main() and also copy-pasted the createCamapginwithcloseDate code and made it as method too
 		
 		//reading data from Generic UTility - PropertiesFileUtility

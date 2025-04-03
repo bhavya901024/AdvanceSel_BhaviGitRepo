@@ -46,7 +46,7 @@ import genericBaseClassUtility_ConfigAttributes.BaseClass;
 		
 			//@Parameters("browser")
 			@Test
-			public void createProductTest() throws IOException, InterruptedException {
+			public void createBhaviProductTest() throws IOException, InterruptedException {
 				//reading data from Generic UTility - PropertiesFileUtility
 					//copied and pasted in Base Class(genericBaseClassUtility)
 				
