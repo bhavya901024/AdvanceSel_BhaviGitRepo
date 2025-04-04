@@ -33,7 +33,7 @@ public void loginTest() throws InterruptedException, IOException {
 		//copied and pasted in Base Class(configurationAttributes)
 		
 	//Cross Browser Testing
-		String expectedURL="http://49.249.28.218:8098/dashboar";  //failing the Line for Screenshot in ExtentReports
+		String expectedURL="http://49.249.28.218:8098/dashboard";  //failing the Line for Screenshot in ExtentReports
 		//String expectedURL="http://49.249.28.218:8098/dashboard";
 		//copied and pasted in Base Class(configurationAttributes)
 		
@@ -61,23 +61,3 @@ public void loginTest() throws InterruptedException, IOException {
 }
 }
 
-/* replacing the below code using PropertiesFileUtility and implementing in 
- * CampaignTest and contactTest pakages
- //reading data from properties file
-		FileInputStream fis = new FileInputStream("C:\\Users\\bhavy\\eclipse-workspace\\AdvanceSeleniumNight\\src\\test\\resources\\CommonData.properties");
-		Properties prop = new Properties();
-		prop.load(fis);
-		String BROWSER=prop.getProperty("browser");
-		String URL=prop.getProperty("url");
-		String UN=prop.getProperty("uname");
-		String PWD=prop.getProperty("pwd");
-		System.out.println(BROWSER);
-		System.out.println(URL);
-		System.out.println(UN);
-		System.out.println(PWD);
-		
-		
-		
-		Actions action=new Actions(driver);
-		action.moveToElement(logoutbtn).click().perform();
-		*/
