@@ -4,9 +4,9 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="TestNGBatchExecution.CreateCampaignTest"/>
-      <class name="TestNGBatchExecution.CreateContactwithCampaign"/>
+      <class name="TestNGBatchExecution.CreateContactwithCampaignTest"/>
       <class name="TestNGBatchExecution.LoginTest"/>
-      <class name="TestNGBatchExecution.CreateProduct"/>
+      <class name="TestNGBatchExecution.CreateProductTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

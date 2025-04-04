@@ -7,9 +7,9 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="Listener.LoginTest"/>
-      <class name="Listener.CreateProduct"/>
+      <class name="Listener.CreateProductTest"/>
       <class name="Listener.CreateCampaignTest"/>
-      <class name="Listener.CreateContactwithCampaign"/>
+      <class name="Listener.CreateContactwithCampaignTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

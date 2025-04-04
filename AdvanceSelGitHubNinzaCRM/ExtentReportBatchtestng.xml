@@ -7,9 +7,9 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="ExtentReportGen.CreateCampaignTest"/>
-      <class name="ExtentReportGen.CreateContactwithCampaign"/>
+      <class name="ExtentReportGen.CreateContactwithCampaignTest"/>
       <class name="ExtentReportGen.LoginTest"/>
-      <class name="ExtentReportGen.CreateProduct"/>
+      <class name="ExtentReportGen.CreateProductTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
