@@ -18,7 +18,7 @@ import ObjectRepository.TC2_DashboardPage;
 import ObjectRepository.TC5_CreateProductsPage;
 import ObjectRepository.TC5_ProductsPage;
 
-public class CreateProduct {
+public class CreateProductTest {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 			//reading data from Generic UTility - PropertiesFileUtility
