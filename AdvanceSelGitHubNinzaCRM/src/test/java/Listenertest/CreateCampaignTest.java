@@ -1,4 +1,4 @@
-package TestNGBatchExecution;
+package Listenertest;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,8 +15,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import GenericListenerUtility.ListenerImple;
 import GenericUtility.ExcelFileUtility;
 import GenericUtility.JavaUtility;
 import GenericUtility.PropertiesFileUtility;
@@ -25,19 +30,17 @@ import ObjectRepository.TC1_LoginPage;
 import ObjectRepository.TC2_DashboardPage;
 import ObjectRepository.TC3_CampaignsPage;
 import ObjectRepository.TC3_CreateCampaignsPage;
+import genericBaseClassUtility_ConfigAttributes.BaseClass;
 
-public class CreateCampaignTest {
+@Listeners(ListenerImple.class)	
+public class CreateCampaignTest extends BaseClass{
 	
 	@Test
-	public void  createCampaignTest() throws InterruptedException, IOException {
-		//Using TestNG created a methos and removed the main() and also copy-pasted the createCamapginwithcloseDate code and made it as method too
+	public void  createBhaviCampaignTest() throws InterruptedException, IOException {
+		//Using TestNG created a methods and removed the main() and also copy-pasted the createCamapginwithcloseDate code and made it as method too
 		
 		//reading data from Generic UTility - PropertiesFileUtility
-		PropertiesFileUtility propUtil = new PropertiesFileUtility();
-		String BROWSER = propUtil.readingDataFromPropertiesFile("browser");
-		String URL = propUtil.readingDataFromPropertiesFile("url");
-		String UN = propUtil.readingDataFromPropertiesFile("uname");
-		String PWD = propUtil.readingDataFromPropertiesFile("pwd");
+			//copied and pasted in Base Class(genericBaseClassUtility)
 		
 		//readingData from GenericUTility-Java Utility
 		JavaUtility jUtil = new JavaUtility();
@@ -49,24 +52,12 @@ public class CreateCampaignTest {
 		String targetSize = exUtil.readingDataFromExcel("CreateCampaignData", 1, 3);		
 		
 		//Cross Browser Testing
-		WebDriver driver=null;
-		if(BROWSER.equalsIgnoreCase("chrome")) {
-			driver=new ChromeDriver();
-		}else if(BROWSER.equalsIgnoreCase("firefox")) {
-			driver=new FirefoxDriver();
-		}else if(BROWSER.equalsIgnoreCase("edge")) {
-			driver=new EdgeDriver();
-		}else {
-			driver=new ChromeDriver();
-		}
-		
+		//copied and pasted in Base Class(genericBaseClassUtility)
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		//launch the Ninza Application and entered UN and PWD and click Login button
-		driver.get(URL);
-		TC1_LoginPage lp=new TC1_LoginPage(driver);
-		lp.login(UN, PWD);
+		//copied and pasted in Base Class(genericBaseClassUtility)
 		Thread.sleep(3000);
 		
 		//create campaign 
@@ -81,27 +72,22 @@ public class CreateCampaignTest {
 
 		//handling confirmation message popup and used Object repository
 		String confmsg = cp.getConfMsg().getText();	
-		if(confmsg.contains(Campaign)) {
-				System.out.println("Campaign "+Campaign+ " added successfully");
-			}else {
-				System.out.println("Campaign not added successfully");
-			}
+		//Assertion concept
+		boolean status = confmsg.contains(Campaign);
+		Assert.assertEquals(status, true, "campaign not added");
+		//Assert.assertTrue(status, "Camapign not added");
+		Reporter.log("Camapign "+Campaign+" added successfully",true);
 		Thread.sleep(3000);
+		
 		//Logout of the application
 		//used Object Repository for Logout of the application
-		dp.logout();				
-		//close the browser
-		driver.quit();
+		//copied and pasted in Base Class(genericBaseClassUtility)
 	}
-
+//@Parameters("browser")
 @Test
 public void createCampaignwithcloseDateTest() throws InterruptedException, IOException {
 	//reading data from Generic UTility - PropertiesFileUtility
-	PropertiesFileUtility propUtil = new PropertiesFileUtility();
-	String BROWSER = propUtil.readingDataFromPropertiesFile("browser");
-	String URL = propUtil.readingDataFromPropertiesFile("url");
-	String UN = propUtil.readingDataFromPropertiesFile("uname");
-	String PWD = propUtil.readingDataFromPropertiesFile("pwd");
+		//copied and pasted in Base Class(genericBaseClassUtility)
 	
 	//readingData from GenericUTility-Java Utility
 	JavaUtility jUtil = new JavaUtility();
@@ -116,24 +102,13 @@ public void createCampaignwithcloseDateTest() throws InterruptedException, IOExc
 	String closeDate=jUtil.generateReqDate(30);
 	
 	//Cross Browser Testing
-	WebDriver driver=null;
-	if(BROWSER.equalsIgnoreCase("chrome")) {
-		driver=new ChromeDriver();
-	}else if(BROWSER.equalsIgnoreCase("firefox")) {
-		driver=new FirefoxDriver();
-	}else if(BROWSER.equalsIgnoreCase("edge")) {
-		driver=new EdgeDriver();
-	}else {
-		driver=new ChromeDriver();
-	}
+	//copied and pasted in Base Class(genericBaseClassUtility)
 	
 	driver.manage().window().maximize();
 	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	
 	//launch the Ninza Application and entered UN and PWD and click Login button by using object repository
-	driver.get(URL);
-	TC1_LoginPage lp=new TC1_LoginPage(driver);
-	lp.login(UN, PWD);
+	//copied and pasted in Base Class(genericBaseClassUtility)
 	Thread.sleep(3000);
 	
 	//create campaign using object Repository
@@ -148,18 +123,16 @@ public void createCampaignwithcloseDateTest() throws InterruptedException, IOExc
 
 	//handling confirmation message popup and used Object repository
 	String confmsg = cp.getConfMsg().getText();
-	if(confmsg.contains(Campaign)) {
-			System.out.println("Campaign" +Campaign+ " added successfully");
-		}else {
-			System.out.println("Campaign not added successfully");
-		}
+	//Assertion concept
+	boolean status = confmsg.contains(Campaign);
+	Assert.assertEquals(status, true, "campaign not added");
+	//Assert.assertTrue(status, "Camapign not added");
+	Reporter.log("Camapign "+Campaign+" added successfully",true);
 	Thread.sleep(3000);
 
 	//Logout of the application
 	//used Object Repository for Logout of the application
-	dp.logout();			
-	//close the browser
-	driver.quit();
+	//copied and pasted in Base Class(genericBaseClassUtility)
 
 }
 

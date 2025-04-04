@@ -1,4 +1,4 @@
-package ExtentReportGen;
+package Listenertest;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -17,7 +17,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import GenericListenerUtility.ExtentReportImple;
 import GenericListenerUtility.ListenerImple;
 import GenericUtility.PropertiesFileUtility;
 import GenericUtility.WebDriverUtility;
@@ -25,7 +24,7 @@ import ObjectRepository.TC1_LoginPage;
 import ObjectRepository.TC2_DashboardPage;
 import genericBaseClassUtility_ConfigAttributes.BaseClass;
 
-@Listeners(ExtentReportImple.class)																																																																			
+@Listeners(ListenerImple.class)																																																																				
 public class LoginTest extends BaseClass{
 	@Test
 public void loginTest() throws InterruptedException, IOException {
@@ -33,8 +32,7 @@ public void loginTest() throws InterruptedException, IOException {
 		//copied and pasted in Base Class(configurationAttributes)
 		
 	//Cross Browser Testing
-		String expectedURL="http://49.249.28.218:8098/dashboar";  //failing the Line for Screenshot in ExtentReports
-		//String expectedURL="http://49.249.28.218:8098/dashboard";
+		String expectedURL="http://49.249.28.218:8098/dashboard";
 		//copied and pasted in Base Class(configurationAttributes)
 		
 		driver.manage().window().maximize();

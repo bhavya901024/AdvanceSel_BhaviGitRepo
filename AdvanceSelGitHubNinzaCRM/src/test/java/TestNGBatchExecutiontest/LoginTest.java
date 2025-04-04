@@ -1,4 +1,4 @@
-package TestNGBatchExecution;
+package TestNGBatchExecutiontest;
 
 import java.io.IOException;
 import java.time.Duration;

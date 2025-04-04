@@ -1,4 +1,4 @@
-package ExtentReportGen;
+package ExtentReportGentest;
 
 
 		import java.io.FileInputStream;

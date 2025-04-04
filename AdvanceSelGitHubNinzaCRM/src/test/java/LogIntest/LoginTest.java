@@ -1,4 +1,4 @@
-package LogIn;
+package LogIntest;
 
 import java.io.IOException;
 import java.time.Duration;
