@@ -1,4 +1,4 @@
-package ExtentReportGen;
+package TestNGBatchExecution;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,14 +22,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.Reporter;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import GenericListenerUtility.ExtentReportImple;
-import GenericListenerUtility.ListenerImple;
 import GenericUtility.ExcelFileUtility;
 import GenericUtility.JavaUtility;
 import GenericUtility.PropertiesFileUtility;
@@ -40,16 +34,17 @@ import ObjectRepository.TC3_CampaignsPage;
 import ObjectRepository.TC3_CreateCampaignsPage;
 import ObjectRepository.TC4_ContactsPage;
 import ObjectRepository.TC4_CreateContactsPage;
-import genericBaseClassUtility_ConfigAttributes.BaseClass;
 
-@Listeners(ExtentReportImple.class)	
-public class CreateContactwithCampaign extends BaseClass{
+public class CreateContactwithCampaignTest {
 
-	//@Parameters("browser")
 	@Test
 	public void createContactwithCampaignTest() throws InterruptedException, IOException {
 		//reading data from Generic UTility - PropertiesFileUtility
-			//copied and pasted in Base Class(genericBaseClassUtility)
+		PropertiesFileUtility propUtil = new PropertiesFileUtility();
+		String BROWSER = propUtil.readingDataFromPropertiesFile("browser");
+		String URL = propUtil.readingDataFromPropertiesFile("url");
+		String UN = propUtil.readingDataFromPropertiesFile("uname");
+		String PWD = propUtil.readingDataFromPropertiesFile("pwd");
 		
 		//readingData from GenericUTility-Java Utility
 		JavaUtility jUtil = new JavaUtility();
@@ -68,15 +63,25 @@ public class CreateContactwithCampaign extends BaseClass{
 		String title = exUtil.readingDataFromExcel("Contact", 1, 3);
 		String contactName = exUtil.readingDataFromExcel("Contact", 1, 4)+randomNum;
 		String mobile = exUtil.readingDataFromExcel("Contact", 1, 5);
-		
-		//cross browser testing
-		//copied and pasted in Base Class(genericBaseClassUtility)
+				
+	   WebDriver driver=null;
+		if(BROWSER.equalsIgnoreCase("chrome")) {
+			driver=new ChromeDriver();
+		}else if(BROWSER.equalsIgnoreCase("firefox")) {
+			driver=new FirefoxDriver();
+		}else if(BROWSER.equalsIgnoreCase("edge")) {
+			driver=new EdgeDriver();
+		}else {
+			driver=new ChromeDriver();
+		}
 		
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		//launch the Ninza Application and entered UN and PWD and click Login button
-			//copied and pasted in Base Class(genericBaseClassUtility)
+		driver.get(URL);
+		TC1_LoginPage lp=new TC1_LoginPage(driver);
+		lp.login(UN, PWD);
 		Thread.sleep(3000);
 		
 		//Object Repository
@@ -109,15 +114,18 @@ public class CreateContactwithCampaign extends BaseClass{
 		
 	   Thread.sleep(3000);
 	   String ConfirmationMsg = ccp1.getConfMsg().getText();
-	   //Assertion concept
-	   boolean status = ConfirmationMsg.contains(contactName);
-	   Assert.assertEquals(status, true, "campaign not added");
-	   //Assert.assertTrue(status, "Campaign not added");
-	   Reporter.log("Camapign "+contactName+" added successfully",true);
+	    if(ConfirmationMsg.contains(contactName))
+	    {
+	    	System.out.println("Contact added Successfully");
+	    }
+	    else
+	    {
+	    	System.out.println("Contact not added");
+	    }
 	   Thread.sleep(5000);
-	   
 	 //used Object Repository for Logout of the application
-	   //copied and pasted in Base Class(genericBaseClassUtility)
+	 dp.logout();
+	 driver.quit();
 
 	}
 

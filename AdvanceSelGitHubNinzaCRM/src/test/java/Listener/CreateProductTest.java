@@ -1,4 +1,4 @@
-package TestNGBatchExecution;
+package Listener;
 
 
 		import java.io.FileInputStream;
@@ -20,8 +20,13 @@ package TestNGBatchExecution;
 		import org.openqa.selenium.support.ui.ExpectedConditions;
 		import org.openqa.selenium.support.ui.Select;
 		import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import GenericListenerUtility.ListenerImple;
 import GenericUtility.ExcelFileUtility;
 import GenericUtility.JavaUtility;
 import GenericUtility.PropertiesFileUtility;
@@ -33,17 +38,17 @@ import ObjectRepository.TC3_CreateCampaignsPage;
 import ObjectRepository.TC4_ContactsPage;
 import ObjectRepository.TC5_CreateProductsPage;
 import ObjectRepository.TC5_ProductsPage;
+import genericBaseClassUtility_ConfigAttributes.BaseClass;
+
+
+@Listeners(ListenerImple.class)		
+		public class CreateProductTest extends BaseClass{
 		
-		public class CreateProduct {
-		
+			//@Parameters("browser")
 			@Test
-			public void createProductTest() throws IOException, InterruptedException {
+			public void createBhaviProductTest() throws IOException, InterruptedException {
 				//reading data from Generic UTility - PropertiesFileUtility
-				PropertiesFileUtility propUtil = new PropertiesFileUtility();
-				String BROWSER = propUtil.readingDataFromPropertiesFile("browser");
-				String URL = propUtil.readingDataFromPropertiesFile("url");
-				String UN = propUtil.readingDataFromPropertiesFile("uname");
-				String PWD = propUtil.readingDataFromPropertiesFile("pwd");
+					//copied and pasted in Base Class(genericBaseClassUtility)
 				
 				//readingData from GenericUTility-Java Utility
 				JavaUtility jUtil = new JavaUtility();
@@ -56,24 +61,13 @@ import ObjectRepository.TC5_ProductsPage;
 				String PriceperUnit = exUtil.readingDataFromExcel("Products", 1, 4);
 								
 				//Cross Browser Testing
-				WebDriver driver=null;
-				if(BROWSER.equalsIgnoreCase("chrome")) {
-					driver=new ChromeDriver();
-				}else if(BROWSER.equalsIgnoreCase("firefox")) {
-					driver=new FirefoxDriver();
-				}else if(BROWSER.equalsIgnoreCase("edge")) {
-					driver=new EdgeDriver();
-				}else {
-					driver=new ChromeDriver();
-				}
+					//copied and pasted in Base Class(genericBaseClassUtility)
 				
 				driver.manage().window().maximize();
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 				
 				//launch the Ninza Application and entered UN and PWD and click Login button
-				driver.get(URL);
-				TC1_LoginPage lp=new TC1_LoginPage(driver);
-				lp.login(UN, PWD);
+					//copied and pasted in Base Class(genericBaseClassUtility)
 				Thread.sleep(3000);
 
 				//Object Repository
@@ -96,19 +90,16 @@ import ObjectRepository.TC5_ProductsPage;
 				
 				//handling confirmation message popup
 				String confmsg = cpp.getConfMsg().getText();
-					if(confmsg.contains(ProductName)) {
-						System.out.println("Product "+ProductName+ " added successfully");
-						} 
-					else {
-						System.out.println("Product not added successfully");
-						}
+				//Assertion concept
+				boolean status = confmsg.contains(ProductName);
+				Assert.assertEquals(status, true, "campaign not added");
+				//Assert.assertTrue(status, "Product not added");
+				Reporter.log("Camapign "+ProductName+" added successfully",true);
 				Thread.sleep(4000);
 
 				//Logout of the application
 				//used Object Repository for Logout of the application
-				dp.logout();								
-				//close the browser
-				driver.quit();  
+					//copied and pasted in Base Class(genericBaseClassUtility)
 			}
 
 		}

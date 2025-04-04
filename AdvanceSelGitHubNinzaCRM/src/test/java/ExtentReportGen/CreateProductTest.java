@@ -43,7 +43,7 @@ import genericBaseClassUtility_ConfigAttributes.BaseClass;
 
 
 @Listeners(ExtentReportImple.class)			
-		public class CreateProduct extends BaseClass{
+		public class CreateProductTest extends BaseClass{
 		
 			//@Parameters("browser")
 			@Test

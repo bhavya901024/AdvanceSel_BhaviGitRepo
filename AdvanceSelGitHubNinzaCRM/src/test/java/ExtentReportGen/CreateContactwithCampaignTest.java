@@ -1,4 +1,4 @@
-package Listener;
+package ExtentReportGen;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -28,6 +28,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import GenericListenerUtility.ExtentReportImple;
 import GenericListenerUtility.ListenerImple;
 import GenericUtility.ExcelFileUtility;
 import GenericUtility.JavaUtility;
@@ -41,8 +42,8 @@ import ObjectRepository.TC4_ContactsPage;
 import ObjectRepository.TC4_CreateContactsPage;
 import genericBaseClassUtility_ConfigAttributes.BaseClass;
 
-@Listeners(ListenerImple.class)	
-public class CreateContactwithCampaign extends BaseClass{
+@Listeners(ExtentReportImple.class)	
+public class CreateContactwithCampaignTest extends BaseClass{
 
 	//@Parameters("browser")
 	@Test
